@@ -31,7 +31,7 @@ vlc http://<server-ip>:8080/test
 ## Net errors emulation
 To emulate an error on a link using tc:
 ```
- <switch> tc qdisc change dev <switch>-<interface> parent 5:1 handle 10: netem <options>
+ <switch> tc qdisc change dev <switch><interface> parent 5:1 handle 10: netem <options>
 ```
 To emulate packet loss using tc
 ```
@@ -39,7 +39,7 @@ To emulate packet loss using tc
 ```
 To emulate a port up/down in switch with sh command
 ```
- sh ifconfig <switch>-<interface> up/down
+ sh ifconfig <switch><interface> up/down
 ```
 To emulate a switch start/stop
 ```
