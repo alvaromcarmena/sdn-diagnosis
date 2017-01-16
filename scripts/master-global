@@ -1,4 +1,3 @@
-
 py "Starting video streaming servers..."\
 xterm sv0\
 sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
