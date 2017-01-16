@@ -33,3 +33,16 @@ To emulate an error on a link using tc:
 ```
  <switch> tc qdisc change dev <switch>-<interface> parent 5:1 handle 10: netem <options>
 ```
+To emulate lost packets using tc
+```
+ <switch> tc qdisc change dev <switch>-<interface> parent 5:1 handle 10: netem loss <percentage>
+```
+To emulate a port up/down in switch with sh command
+```
+ sh ifconfig <switch>-<interface> up/down
+```
+To emulate a switch start/stop
+```
+ switch <switch> start/stop
+```
+
