@@ -33,7 +33,7 @@ To emulate an error on a link using tc:
 ```
  <switch> tc qdisc change dev <switch>-<interface> parent 5:1 handle 10: netem <options>
 ```
-To emulate lost packets using tc
+To emulate packet loss using tc
 ```
  <switch> tc qdisc change dev <switch>-<interface> parent 5:1 handle 10: netem loss <percentage>
 ```
