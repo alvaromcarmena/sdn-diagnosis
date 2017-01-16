@@ -1,0 +1,324 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red250\green247\blue255;}
+{\*\expandedcolortbl;\csgray\c100000;\csgray\c0;\csgenericrgb\c98028\c96726\c100000\c83049;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \cb3 \CocoaLigature0 py "Starting video streaming servers..."\
+xterm sv0\
+sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
+py time.sleep(5)\
+py "Starting video streaming clients..."\
+xterm h1 h2 h3\
+h1 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h2 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h3 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(30)\
+\
+s8 tc qdisc change dev s8-eth2 parent 5:1 handle 10: netem loss 20\
+s8 tc qdisc change dev s8-eth1 parent 5:1 handle 10: netem loss 20\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-08,Switch_malfunction,,')\
+px archivo.close()\
+py time.sleep(70)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+s8 tc qdisc change dev s8-eth2 parent 5:1 handle 10: netem delay 5ms\
+s8 tc qdisc change dev s8-eth1 parent 5:1 handle 10: netem delay 5ms\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-08,Normal_functioning,,')\
+px archivo.close()\
+\
+sh ifconfig s1-eth2 down\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-01,tx_link_down,00-00-00-00-00-05,rx_link_down')\
+px archivo.close()\
+py time.sleep(80)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+sh ifconfig s1-eth2 up\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-01,Normal_functioning,00-00-00-00-00-05,Normal_functioning')\
+px archivo.close()\
+py time.sleep(1)\
+\
+py "Starting video streaming servers..."\
+xterm sv0\
+sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
+py time.sleep(5)\
+py "Starting video streaming clients..."\
+h1 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h2 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h3 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(30)\
+\
+sh ifconfig s8-eth3 down\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('all_switches,server_down,,')\
+px archivo.close()\
+py time.sleep(60)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+sh ifconfig s8-eth3 up\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('all_switches,Normal_functioning,,')\
+px archivo.close()\
+py time.sleep(1)\
+\
+py "Starting video streaming servers..."\
+xterm sv0\
+sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
+py time.sleep(5)\
+py "Starting video streaming clients..."\
+h1 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h2 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h3 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(30)\
+\
+switch s5 stop\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-05,switch_down,,')\
+px archivo.close()\
+py time.sleep(80)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+switch s5 start\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-05,Normal_functioning,,')\
+px archivo.close()\
+py time.sleep(10)\
+\
+py "Starting video streaming servers..."\
+xterm sv0\
+sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
+py time.sleep(5)\
+py "Starting video streaming clients..."\
+xterm h1 h2 h3\
+h1 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h2 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h3 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(30)\
+\
+s1 tc qdisc change dev s1-eth2 parent 5:1 handle 10: netem loss 20\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-01,Switch_malfunction,,')\
+px archivo.close()\
+py time.sleep(80)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+s1 tc qdisc change dev s1-eth2 parent 5:1 handle 10: netem delay 5ms\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-01,Normal_functioning,,')\
+px archivo.close()\
+\
+py "Starting video streaming servers..."\
+xterm sv0\
+sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
+py time.sleep(5)\
+py "Starting video streaming clients..."\
+h1 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h2 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h3 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(30)\
+\
+sh ifconfig s2-eth2 down\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-02,tx_link_down,00-00-00-00-00-03,rx_link_down')\
+px archivo.close()\
+py time.sleep(80)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+sh ifconfig s2-eth2 up\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-02,Normal_functioning,00-00-00-00-00-03,Normal_functioning')\
+px archivo.close()\
+py time.sleep(1)\
+\
+py "Starting video streaming servers..."\
+xterm sv0\
+sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
+py time.sleep(5)\
+py "Starting video streaming clients..."\
+h1 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h2 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h3 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(30)\
+\
+sh ifconfig s8-eth2 down\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-08,tx_link_down,00-00-00-00-00-07,rx_link_down')\
+px archivo.close()\
+py time.sleep(80)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+sh ifconfig s8-eth2 up\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-08,Normal_functioning,00-00-00-00-00-07,Normal_functioning')\
+px archivo.close()\
+py time.sleep(1)\
+\
+py "Starting video streaming servers..."\
+xterm sv0\
+sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
+py time.sleep(5)\
+py "Starting video streaming clients..."\
+h1 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h2 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h3 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(30)\
+\
+switch s3 stop\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-03,switch_down,,')\
+px archivo.close()\
+py time.sleep(80)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+switch s5 start\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-03,Normal_functioning,,')\
+px archivo.close()\
+py time.sleep(10)\
+\
+source /home/mininet/sdn-diagnosis/scripts/master-generic\
+\
+py "Starting video streaming servers..."\
+xterm sv0\
+sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
+py time.sleep(5)\
+py "Starting video streaming clients..."\
+xterm h1 h2 h3\
+h1 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h2 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h3 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(30)\
+\
+s6 tc qdisc change dev s6-eth1 parent 5:1 handle 10: netem loss 20\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-06,Switch_malfunction,,')\
+px archivo.close()\
+py time.sleep(80)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+s6 tc qdisc change dev s6-eth1 parent 5:1 handle 10: netem delay 5ms\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-06,Normal_functioning,,')\
+px archivo.close()\
+\
+py "Starting video streaming servers..."\
+xterm sv0\
+sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
+py time.sleep(5)\
+py "Starting video streaming clients..."\
+h1 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h2 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h3 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(30)\
+\
+sh ifconfig s8-eth1 down\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-08,tx_link_down,00-00-00-00-00-06,rx_link_down')\
+px archivo.close()\
+py time.sleep(80)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+sh ifconfig s8-eth1 up\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-08,Normal_functioning,00-00-00-00-00-06,Normal_functioning')\
+px archivo.close()\
+py time.sleep(1)\
+\
+py "Starting video streaming servers..."\
+xterm sv0\
+sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
+py time.sleep(5)\
+py "Starting video streaming clients..."\
+h1 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h2 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h3 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(30)\
+\
+s7 tc qdisc change dev s7-eth1 parent 5:1 handle 10: netem loss 20\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-07,Switch_malfunction,,')\
+px archivo.close()\
+py time.sleep(80)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+s7 tc qdisc change dev s7-eth1 parent 5:1 handle 10: netem delay 5ms\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-06,Normal_functioning,,')\
+px archivo.close()\
+\
+py "Starting video streaming servers..."\
+xterm sv0\
+sv0 sh /home/mininet/sdn-diagnosis/scripts/server.sh\
+py time.sleep(5)\
+py "Starting video streaming clients..."\
+h1 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h2 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(2)\
+h3 sh /home/mininet/sdn-diagnosis/scripts/client-sv0.sh\
+py time.sleep(30)\
+\
+switch s1 stop\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-01,switch_down,,')\
+px archivo.close()\
+py time.sleep(80)\
+sv0 killall vlc\
+h1 killall vlc\
+h2 killall vlc\
+h3 killall vlc\
+switch s1 start\
+px archivo=open('/home/mininet/sdn-diagnosis/monitor/rcf.txt', 'w')\
+px archivo.write('00-00-00-00-00-01,Normal_functioning,,')\
+px archivo.close()\
+py time.sleep(10)\
+\
+source /home/mininet/sdn-diagnosis/scripts/master-generic\
+}
