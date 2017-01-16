@@ -13,16 +13,10 @@ import csv, operator
 from jpype import *
 import jpype
 
-"""
-stats = {
-    'switches': defaultdict(dict)
-}
-"""
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-low_limit = 100
-high_limit = 3000
 
 dpid1 = "00-00-00-00-00-01"
 dpid2 = "00-00-00-00-00-02"
