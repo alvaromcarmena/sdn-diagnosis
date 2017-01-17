@@ -32,7 +32,7 @@ networkSwitches = [dpid1, dpid2, dpid3, dpid4, dpid5, dpid6, dpid7, dpid8]
 def _create_csv():
     csvsalida = open('netstats.csv', 'w', newline='')
     salida = csv.writer(csvsalida)
-    salida.writerow(['rx_packets_level', 'tx_packets_level', 'lost_packets_level', 'auxPort-up', 'outPort-up', 'inPort-up', 'sw-up', 'root_cause_failure', 'forecast', 'prob'])
+    salida.writerow(['rx_packets_level', 'tx_packets_level', 'lost_packets_level', 'auxPort-up', 'outPort-up', 'inPort-up', 'sw-up', 'root_cause_failure', 'forecast', 'probability'])
     del salida
     csvsalida.close()
     logger.info('csv created')
