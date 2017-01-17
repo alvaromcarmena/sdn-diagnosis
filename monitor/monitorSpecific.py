@@ -25,7 +25,7 @@ dpid_p2 = "00-00-00-00-00-03"
 def _create_csv():
     csvsalida = open('netstats.csv', 'w', newline='')
     salida = csv.writer(csvsalida)
-    salida.writerow(['rx_packets_level', 'tx_packets_level', 'lost_packets_level', 'eth1-up', 'eth2-up', 'eth3-up', 'sw-up', 'root_cause_failure', 'forecast', 'probability' ])
+    salida.writerow(['rx_packets_level', 'tx_packets_level', 'lost_packets_level', 'auxPort-up', 'outPort-up', 'inPort-up', 'sw-up', 'root_cause_failure', 'forecast', 'probability' ])
     del salida
     csvsalida.close()
     logger.info('csv created')
